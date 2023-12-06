@@ -48,7 +48,6 @@ namespace AdventOfCode2023
                     form.SetParent(this);
                     form.Show();
                     //this.Hide();
-                    
                     break;
             }
             

@@ -29,7 +29,6 @@ namespace AdventOfCode2023
 
         private void Day1Form_Load(object sender, EventArgs e)
         {
-            //this.FormClosing += new FormClosingEventHandler(GoHome);
         }
 
         private void GoHome(object sender, FormClosingEventArgs e)
@@ -58,28 +57,22 @@ namespace AdventOfCode2023
                     
                     if (int.TryParse(c.ToString(), out pholder))
                     {
-                        //nums.Append(pholder);
                         nums.Add(pholder);
                         index++;
-                        //textBox2.AppendText(index.ToString());
                     }
                 }
-                //Console.WriteLine(nums.Count());
-                //if (nums.Count() > 1) temp = nums[0].ToString().Trim() + nums.Last().ToString().Trim();
-                //else if (nums.Count > 0) temp = nums[0].ToString().Trim();
                 if (nums.Count != 0)
                 {
                     temp = nums[0].ToString().Trim() + nums.Last().ToString().Trim();
                     result += int.Parse(temp);
                 }
-
             }
             textBox2.AppendText("Part 1's answer is " + result.ToString() + ".");
         }
 
         private int checkMatch(string s)
         {
-            int index = 0;
+            int index;
 
             string[] list = new string[] { "one" , "two", "three", "four", "five",
             "six", "seven", "eight", "nine", "eno", "owt", "eerht", "ruof", "evif",
@@ -106,20 +99,14 @@ namespace AdventOfCode2023
 
         private void GetResult2(List<string> text)
         {
-            int result = 0;
-            int index = 0;
+            int result = 0, pholder = 0;
             string temp = "", temp2 = "";
-            string reverse;
-            int pholder = 0;
-            //List<int> nums = new List<int>();
             int[] nums = new int[2];
-            List<char> chars = new List<char>();
 
 
             foreach (string s in text)
             {
                 Console.WriteLine(s);
-                //nums.Clear();
                 temp = "";
                 temp2 = "";
                 foreach (char c in s)
@@ -161,18 +148,10 @@ namespace AdventOfCode2023
 
                 }
 
-
-
-                //if (nums.Count != 0)
-                //{
                     Console.WriteLine("nums 0 is " + nums[0].ToString() + " nums last is " + nums[1].ToString());
                     result += (nums[0] * 10);
                     result += nums[1];
-                    //temp = nums[0].ToString().Trim() + nums.Last().ToString().Trim();
                     Console.WriteLine(temp);
-                    //result += int.Parse(temp);
-                //}
-
             }
             textBox2.AppendText("\r\nPart 2's answer is " + result.ToString() + ".");
         }
