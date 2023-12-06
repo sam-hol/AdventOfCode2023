@@ -84,6 +84,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Day2Form.Designer.cs">
+      <DependentUpon>Day2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +112,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Day1Form.resx">
       <DependentUpon>Day1Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Day2Form.resx">
+      <DependentUpon>Day2Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

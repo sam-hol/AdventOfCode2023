@@ -49,6 +49,10 @@ namespace AdventOfCode2023
                     form.Show();
                     //this.Hide();
                     break;
+                case 1: 
+                    Day2Form day2f = new Day2Form();
+                    day2f.Show();
+                    break;
             }
             
         }
