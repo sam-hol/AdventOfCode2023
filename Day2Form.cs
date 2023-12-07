@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Security;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
@@ -78,70 +71,60 @@ namespace AdventOfCode2023
             *of the IDs of those games?
             */
 
-            string[] line;
-            List<Regex> regList = new List<Regex>();
-            List<int> gameNumbers = new List<int>();
-            int red = 0, green = 0, blue = 0, index = -1, colorValue = 0, solution = 0;
-            string colorValueString = "";
-            Regex numbers = new Regex("1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20");
-
-            regList.Add(new Regex("red"));
-            regList.Add(new Regex("green"));
-            regList.Add(new Regex("blue"));
-            regList.Add(new Regex("Game"));
-            int match = 0;
-
+            string[] matchStrings;
+            int index = 0, solution = 0, solution2 = 0, fewR, fewG, fewB, red, green, blue;
+            bool goodmatch = false;
+            string digits;
 
             foreach (string s in text) //This loops through every string in the .txt
             {
-                line = s.Split(',', ';', ':');
-                foreach (string s2 in line) Console.WriteLine(s2);
+                matchStrings = s.Trim().Split(',', ';', ':');
+                goodmatch = true;
+                index++;
+                fewR = 0;
+                fewG = 0;
+                fewB = 0;
 
-                foreach (string s3 in line) //This loops through each part of delimited string
+                foreach (string l in matchStrings)
                 {
-                    foreach (Regex r in regList)
+                    digits = new String(l.Where(Char.IsDigit).ToArray());
+                    if (l.Contains("red"))
                     {
-                        if (r.IsMatch(s3)) index = regList.IndexOf(r);
-                    }
-                    colorValue = 0;
-                    colorValue = numbers.Match(s3).Index + 1;
-                    
-                    Console.WriteLine(colorValueString);
-                    //colorValue = int.Parse(colorValueString.Trim());
+                        red = int.Parse(digits.ToString());
+                        if (fewR < red) fewR = red;
+                        if (red > 12)
+                        {
+                            goodmatch = false;
+                        }
 
-                    switch (index)
+                    }
+                    if (l.Contains("green"))
                     {
-                        case 0:
-                            red += colorValue;
-                            break;
-                        case 1:
-                            green += colorValue;
-                            break;
-                        case 2:
-                            blue += colorValue;
-                            break;
-                        case 3:
-                            if (red <= 12 && green <= 13 && blue <= 14) gameNumbers.Add(s.IndexOf(s3) + 1);
-                            colorValueString = "";
-                            red = 0;
-                            green = 0;
-                            blue = 0;
-                            break;
+                        green = int.Parse(digits.ToString());
+                        if (fewG < green) fewG = green;
+                        if (green > 13)
+                        {
+                            goodmatch = false;
+                        }
                     }
-                    colorValueString = "";
-
+                    if (l.Contains("blue"))
+                    {
+                        blue = int.Parse(digits.ToString());
+                        if (fewB < blue) fewB = blue;
+                        if (blue > 14)
+                        {
+                            goodmatch = false;
+                        }
+                    }
                 }
-                
-
-            }
-            if (gameNumbers.Count > 0)
-            {
-                foreach(int i in gameNumbers)
+                solution2 += (fewR * fewG * fewB);
+                if (goodmatch)
                 {
-                    solution += i;
+                    solution += index;
                 }
-                textBox2.AppendText("Part 1 answer is " +  solution + ".\r\n"); 
             }
+            textBox2.AppendText("Solution for part 1 is " + solution + ".\r\n");
+            textBox2.AppendText("Solution for part 2 is " + solution2 + ".\r\n");
         }
-    } 
+    }
 }
